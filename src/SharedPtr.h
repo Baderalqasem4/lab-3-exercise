@@ -38,10 +38,9 @@ public:
         return mRefCount;
     }
 
-    private:
+private:
     // TODO: add field(s) which both control block types need to have
     long mRefCount;
-
 };
 
 template <typename T>
@@ -98,7 +97,6 @@ class SharedPtr {
         std::swap(mControl, other.mControl);
     }
 
-
     SharedPtr& operator=(const SharedPtr& other) {
         SharedPtr otherCopy(other); // make full copy of the other first
         swap(otherCopy);
@@ -145,7 +143,7 @@ class SharedPtr {
     }
 
     long useCount() const {
-        return mControl ? mControl->refCount() : 0;
+        return mControl ? mControl->refCount() : 0; // no control block means nothing is being managed
     }
 
     private: T* mStoredPtr;
@@ -160,6 +158,6 @@ template <typename T, typename... Args>
 SharedPtr<T> makeSharedBasic(Args&&... args) {
     T* raw = new T(std::forward<Args>(args)...);
     return SharedPtr<T>(raw);
-};
+}
 
 #endif

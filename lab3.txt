@@ -7,8 +7,8 @@
 
 
 Answers
-1. It's faster to dereference
-2. It costs extra memory
+1. It's faster to dereference. Without a stored pointer we would have to call the control block's managedAddress() everytime. 
+2. It costs extra memory since you're storing two pointers instead of one
 3. No single piece of code owns the object so its harder to know when it gets destroyed.
    Shared pointers can also leak memory if two objects hold shared_ptrs to each other.
 4. Every copy and destruction has to update a shared counter, which is exra work a regular 

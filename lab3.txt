@@ -4,3 +4,12 @@
 3. From a system design/architecture perspective, what disadvantages are there to using shared pointers?
 4. From a performance perspective, what disadvantages there are to using shared pointers (say, versus a unique pointer
    or raw pointer)?
+
+
+Answers
+1. It's faster to dereference
+2. It costs extra memory
+3. No single piece of code owns the object so its harder to know when it gets destroyed.
+   Shared pointers can also leak memory if two objects hold shared_ptrs to each other.
+4. Every copy and destruction has to update a shared counter, which is exra work a regular 
+   pointer or unique_ptr never does.
